@@ -1,9 +1,18 @@
 <script setup lang="ts">
+import TitleBar from './components/TitleBar.vue';
+
 </script>
 
 <template>
-  <div>hello world</div>
+  <div class="layout">
+    <TitleBar />
+  </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
+.layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
 </style>

@@ -1,5 +1,7 @@
 import { app, BrowserWindow } from 'electron';
 import path from 'path';
+import { isDev, registerFramelessWindowIpc } from './utils';
+import { createWindowListener } from './listener';
 
 let win: BrowserWindow | null = null;
 
@@ -15,11 +17,13 @@ function createWindow() {
       contextIsolation: true
     }
   });
-  if(!app.isPackaged) {
+  if(isDev) {
     win.loadURL('http://localhost:44353');
   } else {
     win.loadFile('dist/index.html');
   }
+  registerFramelessWindowIpc();
+  createWindowListener(win);
 }
 
 app.whenReady().then(() => {
